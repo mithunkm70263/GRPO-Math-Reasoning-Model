@@ -25,6 +25,17 @@ for split in ds:
 
             bad.append((split, final_answer))
 
+def build_prompt(question):
+    return f"""Solve the math problem below. First think through it step by step.
+Then write your final answer inside <answer></answer> tags.
+Put only the number inside the tags: no units, no $ sign, no commas, no words.
 
-print(f"Found {len(bad)} offenders:")
-print(bad[:93])
+Example:
+Question: A shop sells 3 pens at 4 dollars each. How much do the pens cost in total?
+Reasoning: 3 pens at 4 dollars each is 3 x 4 = 12.
+<answer>12</answer>
+
+Question: {question}
+"""
+
+print(build_prompt(ds["train"][0]["question"]))
