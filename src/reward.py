@@ -17,6 +17,33 @@ def correctness_reward(response,ground_truth):
 
     if a==ground_truth:
         return 1
+
     else:
         return 0
-print(correctness_reward("<answer>72 clips</answer>","72"))
+
+def format_reward(response):
+    a = extract_model_answer(response)
+    if a is None:
+        return 0
+    else:
+        return 0.15
+
+def total_reward(response, ground_truth):
+    a = format_reward(response) + correctness_reward(response,ground_truth)
+    return a
+
+
+
+    
+# tests = [
+#     ("The total is 72.", "72", 0),
+#     ("<answer>17</answer>", "72", 0.15),
+#     ("The total is 72. <answer>72</answer>", "72", 1.15),
+#     ("<answer>$72</answer>", "72", 0.15),
+# ]
+
+# for response, truth, expected in tests:
+#     got = total_reward(response, truth)
+#     print(response, "| expected:", expected, "| got:", got)
+
+

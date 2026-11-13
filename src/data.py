@@ -38,4 +38,3 @@ Reasoning: 3 pens at 4 dollars each is 3 x 4 = 12.
 Question: {question}
 """
 
-print(build_prompt(ds["train"][0]["question"]))
